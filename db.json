@@ -1,0 +1,34 @@
+{
+  "menu": [
+      {
+          "id": 1,
+          "item": "Blusa de frio",
+          "img": "https://img.ltwebstatic.com/images3_pi/2021/09/26/1632629319564855327742cf3ce956c6c8fe0bddd8_thumbnail_600x.webp"
+      },
+      {
+          "id": 2,
+          "item": "Blusa frio vermelha",
+          "img": "https://img.ltwebstatic.com/images3_pi/2022/11/01/1667267004a4f503909f78cf013ee4b0bed0770237_thumbnail_600x.webp"
+      },
+      {
+          "id": 3,
+          "item": "Blusa frio vermelha",
+          "img": "https://img.ltwebstatic.com/images3_pi/2022/11/01/1667267004a4f503909f78cf013ee4b0bed0770237_thumbnail_600x.webp"
+      },
+      {
+          "id": 4,
+          "item": "Blusa frio vermelha",
+          "img": "https://img.ltwebstatic.com/images3_pi/2022/11/01/1667267004a4f503909f78cf013ee4b0bed0770237_thumbnail_600x.webp"
+      },
+      {
+          "id": 5,
+          "item": "Blusa frio vermelha",
+          "img": "https://img.ltwebstatic.com/images3_pi/2022/11/01/1667267004a4f503909f78cf013ee4b0bed0770237_thumbnail_600x.webp"
+      },
+      {
+          "id": 6,
+          "item": "Blusa frio vermelha",
+          "img": "https://img.ltwebstatic.com/images3_pi/2022/11/01/1667267004a4f503909f78cf013ee4b0bed0770237_thumbnail_600x.webp"
+      }
+  ]
+}
