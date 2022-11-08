@@ -1,21 +1,20 @@
 import styled from "styled-components"
 import { useNavigate } from "react-router-dom"
-
-export default function Blusas(props){
+export default function Calças(props){
     const navigate = useNavigate()
+
     return(
         <>
-            <ContainerBlusas onClick={()=> navigate(`/Detalhes${props.category}/${props.id}`)}>
+            <ContainerCalças onClick={()=> navigate(`/Detalhes${props.category}/${props.id}`)}>
                     <p>{props.item}</p>
                     <img src={props.img}/>
-                </ContainerBlusas>
+                </ContainerCalças>
         </>
     )
 }
 
-const ContainerBlusas = styled.div`
-
-font-size: 18px;
+const ContainerCalças = styled.div`
+    font-size: 18px;
     font-family: 'Comfortaa';
     margin-left: 20px;
     img{
@@ -24,5 +23,4 @@ font-size: 18px;
     p{
         margin-bottom: 5px;
     }
-
 `

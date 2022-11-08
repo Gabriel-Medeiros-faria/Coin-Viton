@@ -1,10 +1,26 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
-*{
-    font-family: 'Lexend Deca';
-    box-sizing: border-box;
-}
+* {
+    scrollbar-width: auto;
+    scrollbar-color: #620e5d #ffffff;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #620e5d;
+    border-radius: 10px;
+    border: 3px solid #ffffff;
+  }
+  
     html, body, div, span, applet, object, iframe,
     h1, h2, h3, h4, h5, h6, p, blockquote, pre,
     a, abbr, acronym, address, big, cite, code,
