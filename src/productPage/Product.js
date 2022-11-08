@@ -19,6 +19,26 @@ export default function Product() {
             setImg(resp.data.img)
         })
     }, [])
+    function AddQtd(){
+        setQtd(qtd + 1)
+        const body = {
+            "qtd": qtd + 1
+        }
+        const promisseQtd = axios.patch(`${process.env.REACT_APP_PRODUCTS_URI}/${category}/${id}`, body)
+        promisseQtd.then((resp)=>console.log(resp))
+    }
+    function SubQtd(){
+        if(qtd<2){
+            return
+        }
+        setQtd(qtd - 1)
+        const body = {
+            "qtd": qtd - 1
+        }
+        const promisseQtd = axios.patch(`${process.env.REACT_APP_PRODUCTS_URI}/${category}/${id}`, body)
+        promisseQtd.then((resp)=>console.log(resp))
+    }
+    
     return (
         <>
             <Header />
@@ -33,9 +53,9 @@ export default function Product() {
                     </div>
                     <div className="finaly">
                         <div className="buttons">
-                            <button className="somar">+</button>
+                            <button className="somar" onClick={()=> AddQtd()}>+</button>
                             <p>{qtd}</p>
-                            <button className="sub">-</button>
+                            <button className="sub" onClick={()=>SubQtd()}>-</button>
                         </div>
                         <button className="addCart">Colocar no carrinho</button>
                         <div className="back">Voltar</div>
