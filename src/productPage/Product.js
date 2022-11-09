@@ -49,21 +49,24 @@ export default function Product() {
     }
 
     function AddCart() {
-            let Postbody= {
-                "item":item,
-                "img":img,
-                "price":price,
-                "qtd":qtd
+        if (!arrCart.includes(totalObject)) {
+            let Postbody = {
+                "id": id,
+                "item": item,
+                "img": img,
+                "price": price,
+                "qtd": qtd
             }
             console.log(Postbody)
             const promisse = axios.post(`${process.env.REACT_APP_PRODUCTS_URI}/Cart`, Postbody)
-            promisse.then((resp)=> console.log(resp))
-            promisse.catch((error)=>console.log(error))
+            promisse.then((resp) => console.log(resp))
+            promisse.catch((error) => console.log(error))
+        }
         if (!arrCart.includes(totalObject)) {
             setArrCart([...arrCart, totalObject])
         }
-    }
 
+    }
 
     return (
         <>

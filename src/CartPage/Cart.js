@@ -5,19 +5,25 @@ import { useParams } from "react-router-dom"
 import axios from "axios"
 
 export default function OpeningCart() {
-    const { arrCart, setOpenCart, setArrCart, setFin, setQtd, qtd } = useContext(AuthContext)
-    const { category, id } = useParams()
+    const { arrCart, setOpenCart, setArrCart, setFin, qtd} = useContext(AuthContext)
+    const { id } = useParams()
     console.log(arrCart)
 
     function GetItem(){
         useEffect(()=>{
             let promisse = axios.get(`${process.env.REACT_APP_PRODUCTS_URI}/Cart`)
-            promisse.then((resp)=> console.log(resp.data))
+            promisse.then((resp)=> {
+                setArrCart(resp.data)
+            })
             promisse.catch((error)=>console.log(error))
         },[])
     }
+    GetItem()
 
     function DeleteItem(idItem) {
+        let promisse = axios.delete(`${process.env.REACT_APP_PRODUCTS_URI}/Cart/${idItem}`)
+        promisse.then((resp)=>console.log(resp))
+        promisse.catch((error)=>console.log(error))
         let newArray = arrCart.filter((item) => item.id !== idItem)
         setArrCart(newArray)
     }
@@ -27,26 +33,26 @@ export default function OpeningCart() {
         setOpenCart(false)
     }
 
-    function AddQtd() {
-        setQtd(qtd + 1)
+    function AddQtd(quantidade) {
         const body = {
-            "qtd": qtd + 1
+            "qtd": qtd
         }
-        const promisseQtd = axios.patch(`${process.env.REACT_APP_PRODUCTS_URI}/${category}/${id}`, body)
+        const promisseQtd = axios.patch(`${process.env.REACT_APP_PRODUCTS_URI}/Cart/${id}`, body)
         promisseQtd.then((resp) => console.log(resp))
-    }
+    }  
+    AddQtd()
 
-    function SubQtd() {
-        if (qtd < 2) {
+    function SubQtd(quantidade) {
+        if (quantidade < 1) {
             return
         }
-        setQtd(qtd - 1)
         const body = {
-            "qtd": qtd - 1
+            "qtd": qtd
         }
-        const promisseQtd = axios.patch(`${process.env.REACT_APP_PRODUCTS_URI}/${category}/${id}`, body)
+        const promisseQtd = axios.patch(`${process.env.REACT_APP_PRODUCTS_URI}/Cart/${id}`, body)
         promisseQtd.then((resp) => console.log(resp))
     }
+    SubQtd()
 
     return (
         <>
@@ -57,13 +63,9 @@ export default function OpeningCart() {
                             <img src={obj.img} />
                             <div>
                                 <p>{obj.item}</p>
-                                <p>R${obj.price}</p>
+                                <p>R${obj.price * obj.qtd}</p>
                                 <div className="containerAdd">
-                                    <p>Quantidade:</p> <div className="buttonsAdd">
-                                        <button className="somar" onClick={() => AddQtd(obj.qtd)}>+</button>
-                                        <p>{obj.qtd}</p>
-                                        <button className="sub" onClick={() => SubQtd(obj.qtd)}>-</button>
-                                    </div>
+                                    <p>Quantidade: {obj.qtd}</p>
                                 </div>
                             </div>
                             <ion-icon name="trash-outline" className="trash" onClick={(() => DeleteItem(obj.id))}></ion-icon>
