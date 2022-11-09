@@ -1,16 +1,18 @@
 import axios from "axios"
-import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useContext, useEffect, useState } from "react"
 import styled from "styled-components"
 import Header from "../Header/header"
 import Blusas from "./Blusas"
 import Calças from "./Calcas"
 import Sapatos from "./Sapatos"
+import OpeningCart from "../CartPage/Cart"
+import { AuthContext } from "../Contexts/Auth"
+
 export default function InitialPage() {
     const[blusas, setBlusas] = useState([])
     const[calcas, setCalcas] = useState([])
     const[sapatos, setSapatos] = useState([])
-    const navigate = useNavigate()
+    const {openCart} = useContext(AuthContext)
 
     useEffect(()=>{
         const promisse = axios.get(`${process.env.REACT_APP_PRODUCTS_URI}/Blusas`)
@@ -31,6 +33,7 @@ export default function InitialPage() {
     return (
         <>
             <Header />
+            {openCart?<OpeningCart/>:""}
             <InitialPageContainer>
                 <h1>Blusas</h1>
                 <div className="ContainerBlusas">
@@ -56,6 +59,7 @@ export default function InitialPage() {
 const InitialPageContainer = styled.div`
 font-size: 30px;
 font-family: 'Comfortaa';
+margin-top: 120px;
 h1{
     margin-bottom: 20px;
     margin-top: 20px;

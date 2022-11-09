@@ -1,24 +1,29 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import styled from "styled-components"
 import Header from "../Header/header"
 import { useContext } from "react"
 import { AuthContext } from "../Contexts/Auth"
-
+import OpeningCart from "../CartPage/Cart"
 export default function Product() {
     const { category, id } = useParams()
-    const {setDetails, setPrice, setQtd, setImg, details, price, qtd, img} = useContext(AuthContext)
+    const {setDetails, setPrice, setQtd, setImg, setTotalObject, setArrCart, details, price, qtd, img, totalObject, arrCart, openCart, setDisabled, disabled} = useContext(AuthContext)
+    const navigate = useNavigate()
+    
+
     useEffect(() => {
         const promisse = axios.get(`${process.env.REACT_APP_PRODUCTS_URI}/${category}/${id}`)
         promisse.then((resp) => {
             console.log(resp.data)
+            setTotalObject(resp.data)
             setDetails(resp.data.details)
             setPrice(resp.data.price)
             setQtd(resp.data.qtd)
             setImg(resp.data.img)
         })
-    }, [])
+    }, [qtd])
+
     function AddQtd(){
         setQtd(qtd + 1)
         const body = {
@@ -27,6 +32,7 @@ export default function Product() {
         const promisseQtd = axios.patch(`${process.env.REACT_APP_PRODUCTS_URI}/${category}/${id}`, body)
         promisseQtd.then((resp)=>console.log(resp))
     }
+
     function SubQtd(){
         if(qtd<2){
             return
@@ -39,9 +45,16 @@ export default function Product() {
         promisseQtd.then((resp)=>console.log(resp))
     }
     
+    function AddCart(){
+        if(!arrCart.includes(totalObject) && qtd !== 0){
+            setArrCart([...arrCart, totalObject])
+            setDisabled(true)
+        }
+    }
     return (
         <>
             <Header />
+            {openCart?<OpeningCart/>:""}
             <ContainerProdutct>
                 <div className="imgProduct">
                     <img src={img} />
@@ -53,12 +66,13 @@ export default function Product() {
                     </div>
                     <div className="finaly">
                         <div className="buttons">
-                            <button className="somar" onClick={()=> AddQtd()}>+</button>
+                            <button className="somar" onClick={()=> AddQtd()} disabled={disabled}>+</button>
                             <p>{qtd}</p>
-                            <button className="sub" onClick={()=>SubQtd()}>-</button>
+                            <button className="sub" onClick={()=>SubQtd()} disabled={disabled}>-</button>
                         </div>
-                        <button className="addCart">Colocar no carrinho</button>
-                        <div className="back">Voltar</div>
+                        <button className="addCart" onClick={()=> AddCart()}>Colocar no carrinho</button>
+                        {disabled? <p className="sucess">produto adicionado no carrinho</p>: ""}
+                        <div className="back" onClick={()=> navigate("/")}>Voltar</div>
                     </div>
                 </div>
 
@@ -72,6 +86,7 @@ const ContainerProdutct = styled.div`
 display: flex;
 margin-top: 40px;
 justify-content: center;
+margin-top: 120px;
 img{
     width: 400px;
 
@@ -175,6 +190,10 @@ p{
     flex-direction: column;
     align-items: center;
     position: relative;
+    .sucess{
+        font-size: 15px;
+        margin-top: 5px;
+    }
 }
 .back{
     font-family: 'comfortaa';

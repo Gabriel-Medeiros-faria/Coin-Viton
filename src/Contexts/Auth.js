@@ -8,9 +8,28 @@ function AuthProvider({children}){
     let [qtd, setQtd] = useState()
     const [img, setImg] = useState("")
     const[arrCart, setArrCart] = useState([])
-
+    const [totalObject, setTotalObject] = useState({})
+    const [openCart, setOpenCart] = useState(false)
+    const [disabled, setDisabled] = useState(false)
     return(
-        <AuthContext.Provider value={{setDetails, setPrice, setQtd, setImg, details, price, qtd, img}}>
+        <AuthContext.Provider value={{
+        setDetails, 
+        setPrice, 
+        setQtd, 
+        setImg, 
+        setArrCart, 
+        setTotalObject,
+        setOpenCart, 
+        setDisabled,
+        disabled,
+        details, 
+        price, 
+        qtd, 
+        img, 
+        arrCart, 
+        totalObject,
+        openCart
+        }}>
             {children}
         </AuthContext.Provider>
     )
