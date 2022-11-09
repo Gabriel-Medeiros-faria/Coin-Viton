@@ -197,7 +197,7 @@
       "item": "Calça jeans",
       "img": "https://img.ltwebstatic.com/images3_pi/2021/11/08/1636348969bf4841c624686d6be45c63482cc9f51d_thumbnail_600x.webp",
       "details": "detalhe item 5",
-      "qtd": 1,
+      "qtd": 7,
       "price": 32
     },
     {
@@ -283,7 +283,7 @@
       "item": "All stars",
       "img": "https://img.ltwebstatic.com/images3_pi/2022/05/30/16538883084d0408f42b67223c3f8605c4217de138_thumbnail_600x.webp",
       "details": "detalhe item 3",
-      "qtd": 1,
+      "qtd": 11,
       "price": 60
     },
     {
@@ -291,7 +291,7 @@
       "item": "Sapatos rosas",
       "img": "https://img.ltwebstatic.com/gspCenter/goodsImage/2022/10/28/2539682027_1030764/80A51DEBCA74137803F2A6E5E143B30D_thumbnail_600x.jpg",
       "details": "detalhe item 4",
-      "qtd": 1,
+      "qtd": 2,
       "price": 25
     },
     {
@@ -307,8 +307,24 @@
       "item": "Sapatos verdes",
       "img": "https://img.ltwebstatic.com/images3_pi/2022/05/13/1652433943ae43f12c475f7314331887cdf690304a_thumbnail_600x.webp",
       "details": "detalhe item 6",
-      "qtd": 1,
+      "qtd": 29,
       "price": 100
+    }
+  ],
+  "Cart": [
+    {
+      "item": "Calça cinza",
+      "img": "https://img.ltwebstatic.com/images3_pi/2022/05/06/1651817835b9bbd2b7ba6682e3fbfcd2a67b5b42ca_thumbnail_600x.webp",
+      "price": 19,
+      "qtd": 1,
+      "id": 1
+    },
+    {
+      "item": "Calça cinza",
+      "img": "https://img.ltwebstatic.com/images3_pi/2022/05/06/1651817835b9bbd2b7ba6682e3fbfcd2a67b5b42ca_thumbnail_600x.webp",
+      "price": 19,
+      "qtd": 1,
+      "id": 2
     }
   ]
 }

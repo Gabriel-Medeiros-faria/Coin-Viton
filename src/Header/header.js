@@ -5,7 +5,7 @@ import { AuthContext } from "../Contexts/Auth"
 
 export default function Header(){
     const navigate = useNavigate()
-    const{arrCart, setOpenCart} = useContext(AuthContext)
+    const{arrCart, setOpenCart, setDisabled} = useContext(AuthContext)
     return(
         <>
             <HeaderContainer>
@@ -13,7 +13,10 @@ export default function Header(){
                     <img src="https://media-exp1.licdn.com/dms/image/C4E0BAQGtjaN-5cI7Nw/company-logo_200_200/0/1656973103389?e=2147483647&v=beta&t=eClbU0wyH-I-l6TJuSLxc96NYGknlnyjv3XOJ7SPuqw"/>
                 </ImgUser>
                 <NameShopping>
-                    <h1 onClick={()=>navigate("/")}>Coin Viton</h1>
+                    <h1 onClick={()=>{
+                        navigate("/")
+                        setDisabled(false)}}>
+                    Coin Viton</h1>
                 </NameShopping>
                 <Cart>
                     {arrCart.length !== 0 ?<div><p>Conclua sua compra</p><ion-icon name="arrow-forward-outline"></ion-icon></div>:""}
@@ -33,6 +36,7 @@ display: flex;
 justify-content: space-between;
 align-items: center;
 position: fixed;
+z-index: 0;
 top: 0;
 left: 0;
 `

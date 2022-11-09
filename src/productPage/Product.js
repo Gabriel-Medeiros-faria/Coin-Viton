@@ -6,11 +6,13 @@ import Header from "../Header/header"
 import { useContext } from "react"
 import { AuthContext } from "../Contexts/Auth"
 import OpeningCart from "../CartPage/Cart"
+import Finishing from "../finally/finishing"
+
+
 export default function Product() {
     const { category, id } = useParams()
-    const {setDetails, setPrice, setQtd, setImg, setTotalObject, setArrCart, details, price, qtd, img, totalObject, arrCart, openCart, setDisabled, disabled} = useContext(AuthContext)
+    const { setDetails, setPrice, setQtd, setImg, setTotalObject, setArrCart, details, price, qtd, img, totalObject, arrCart, openCart, setDisabled, fin, setItem, item } = useContext(AuthContext)
     const navigate = useNavigate()
-    
 
     useEffect(() => {
         const promisse = axios.get(`${process.env.REACT_APP_PRODUCTS_URI}/${category}/${id}`)
@@ -21,20 +23,21 @@ export default function Product() {
             setPrice(resp.data.price)
             setQtd(resp.data.qtd)
             setImg(resp.data.img)
+            setItem(resp.data.item)
         })
     }, [qtd])
 
-    function AddQtd(){
+    function AddQtd() {
         setQtd(qtd + 1)
         const body = {
             "qtd": qtd + 1
         }
         const promisseQtd = axios.patch(`${process.env.REACT_APP_PRODUCTS_URI}/${category}/${id}`, body)
-        promisseQtd.then((resp)=>console.log(resp))
+        promisseQtd.then((resp) => console.log(resp))
     }
 
-    function SubQtd(){
-        if(qtd<2){
+    function SubQtd() {
+        if (qtd < 2) {
             return
         }
         setQtd(qtd - 1)
@@ -42,19 +45,31 @@ export default function Product() {
             "qtd": qtd - 1
         }
         const promisseQtd = axios.patch(`${process.env.REACT_APP_PRODUCTS_URI}/${category}/${id}`, body)
-        promisseQtd.then((resp)=>console.log(resp))
+        promisseQtd.then((resp) => console.log(resp))
     }
-    
-    function AddCart(){
-        if(!arrCart.includes(totalObject) && qtd !== 0){
+
+    function AddCart() {
+            let Postbody= {
+                "item":item,
+                "img":img,
+                "price":price,
+                "qtd":qtd
+            }
+            console.log(Postbody)
+            const promisse = axios.post(`${process.env.REACT_APP_PRODUCTS_URI}/Cart`, Postbody)
+            promisse.then((resp)=> console.log(resp))
+            promisse.catch((error)=>console.log(error))
+        if (!arrCart.includes(totalObject)) {
             setArrCart([...arrCart, totalObject])
-            setDisabled(true)
         }
     }
+
+
     return (
         <>
+            {fin ? <Finishing /> : ""}
             <Header />
-            {openCart?<OpeningCart/>:""}
+            {openCart ? <OpeningCart /> : ""}
             <ContainerProdutct>
                 <div className="imgProduct">
                     <img src={img} />
@@ -66,13 +81,16 @@ export default function Product() {
                     </div>
                     <div className="finaly">
                         <div className="buttons">
-                            <button className="somar" onClick={()=> AddQtd()} disabled={disabled}>+</button>
+                            <button className="somar" onClick={() => AddQtd()}>+</button>
                             <p>{qtd}</p>
-                            <button className="sub" onClick={()=>SubQtd()} disabled={disabled}>-</button>
+                            <button className="sub" onClick={() => SubQtd()}>-</button>
                         </div>
-                        <button className="addCart" onClick={()=> AddCart()}>Colocar no carrinho</button>
-                        {disabled? <p className="sucess">produto adicionado no carrinho</p>: ""}
-                        <div className="back" onClick={()=> navigate("/")}>Voltar</div>
+                        <button className="addCart" onClick={() => AddCart()}>Colocar no carrinho</button>
+                        {arrCart.includes(totalObject) ? <p className="sucess">produto adicionado no carrinho</p> : ""}
+                        <div className="back" onClick={() => {
+                            navigate("/")
+                            setDisabled(false)
+                        }}>Voltar</div>
                     </div>
                 </div>
 
@@ -84,12 +102,10 @@ export default function Product() {
 
 const ContainerProdutct = styled.div`
 display: flex;
-margin-top: 40px;
 justify-content: center;
-margin-top: 120px;
+padding-top: 130px;
 img{
     width: 400px;
-
 }
 .Rigth{
     margin-left: 50px;
@@ -102,7 +118,6 @@ p{
     font-size: 30px;
     margin-bottom: 40px;
 }
-
 .addCart {
 	box-shadow: 0px 10px 14px -7px #276873;
     background: rgb(47,19,53);
@@ -158,7 +173,6 @@ p{
 	position:relative;
 	top:1px;
 }
-
 .sub {
 	box-shadow: 0px 10px 14px -7px #276873;
     background: rgb(47,19,53);

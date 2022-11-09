@@ -11,6 +11,13 @@ function AuthProvider({children}){
     const [totalObject, setTotalObject] = useState({})
     const [openCart, setOpenCart] = useState(false)
     const [disabled, setDisabled] = useState(false)
+    const [fin, setFin] = useState(false)
+    const[name, setName] = useState("")
+    const[email, setEmail] = useState("")
+    const[dataNascimento, setDataNascimento] = useState("")
+    const[cep, setCep] = useState("")
+    const[item, setItem] = useState("")
+
     return(
         <AuthContext.Provider value={{
         setDetails, 
@@ -21,14 +28,25 @@ function AuthProvider({children}){
         setTotalObject,
         setOpenCart, 
         setDisabled,
+        setFin,
+        setItem,
+        item,
         disabled,
+        fin,
         details, 
         price, 
         qtd, 
         img, 
         arrCart, 
         totalObject,
-        openCart
+        openCart,setName, 
+        setEmail, 
+        setDataNascimento,
+        setCep,
+        name,
+        email,
+        dataNascimento,
+        cep
         }}>
             {children}
         </AuthContext.Provider>

@@ -1,37 +1,80 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import styled from "styled-components"
 import { AuthContext } from "../Contexts/Auth"
+import { useParams } from "react-router-dom"
+import axios from "axios"
 
-export default function OpeningCart(){
-    const {arrCart, setOpenCart, setArrCart} = useContext(AuthContext)
+export default function OpeningCart() {
+    const { arrCart, setOpenCart, setArrCart, setFin, setQtd, qtd } = useContext(AuthContext)
+    const { category, id } = useParams()
     console.log(arrCart)
 
-    function DeleteItem(idItem){
-        let newArray = arrCart.filter((item)=> item.id !== idItem)
+    function GetItem(){
+        useEffect(()=>{
+            let promisse = axios.get(`${process.env.REACT_APP_PRODUCTS_URI}/Cart`)
+            promisse.then((resp)=> console.log(resp.data))
+            promisse.catch((error)=>console.log(error))
+        },[])
+    }
+
+    function DeleteItem(idItem) {
+        let newArray = arrCart.filter((item) => item.id !== idItem)
         setArrCart(newArray)
     }
 
-    return(
+    function FinalizarPedido() {
+        setFin(true)
+        setOpenCart(false)
+    }
+
+    function AddQtd() {
+        setQtd(qtd + 1)
+        const body = {
+            "qtd": qtd + 1
+        }
+        const promisseQtd = axios.patch(`${process.env.REACT_APP_PRODUCTS_URI}/${category}/${id}`, body)
+        promisseQtd.then((resp) => console.log(resp))
+    }
+
+    function SubQtd() {
+        if (qtd < 2) {
+            return
+        }
+        setQtd(qtd - 1)
+        const body = {
+            "qtd": qtd - 1
+        }
+        const promisseQtd = axios.patch(`${process.env.REACT_APP_PRODUCTS_URI}/${category}/${id}`, body)
+        promisseQtd.then((resp) => console.log(resp))
+    }
+
+    return (
         <>
             <ContainerCart>
-                {arrCart.length !== 0?<ul>
-                    {arrCart.map((obj)=>
-                    <div className="procutc">
-                        <img src={obj.img}/>
-                        <div>
-                            <p>{obj.item}</p>
-                            <p>R${obj.price}</p>
-                            <p>Quantidade: {obj.qtd}</p>
+                {arrCart.length !== 0 ? <ul>
+                    {arrCart.map((obj) =>
+                        <div className="procutc">
+                            <img src={obj.img} />
+                            <div>
+                                <p>{obj.item}</p>
+                                <p>R${obj.price}</p>
+                                <div className="containerAdd">
+                                    <p>Quantidade:</p> <div className="buttonsAdd">
+                                        <button className="somar" onClick={() => AddQtd(obj.qtd)}>+</button>
+                                        <p>{obj.qtd}</p>
+                                        <button className="sub" onClick={() => SubQtd(obj.qtd)}>-</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <ion-icon name="trash-outline" className="trash" onClick={(() => DeleteItem(obj.id))}></ion-icon>
                         </div>
-                        <ion-icon name="trash-outline" className="trash" onClick={(()=>DeleteItem(obj.id))}></ion-icon>
-                    </div>
-                    )}                    
-                </ul>:<p className="none">Nenhum produto no carrinho</p>}
+                    )}
+                </ul> : <p className="none">Nenhum produto no carrinho</p>}
 
                 <div className="buttons">
-                    {arrCart.length !== 0?<button className="comprarMais">Finalizar pedido</button>:""}
-                    <p className="back" onClick={(()=>setOpenCart(false))}>Continuar comprando</p>
-                </div>               
+                    {arrCart.length !== 0 ? <button className="comprarMais" onClick={(() => FinalizarPedido())}>Finalizar pedido</button> : ""}
+                    <p className="back" onClick={(() => setOpenCart(false))}>Continuar comprando</p>
+                </div>
             </ContainerCart>
         </>
     )
@@ -118,5 +161,66 @@ overflow-y: scroll;
     margin-top: 30px;
     margin-bottom: 20px;
     font-size: 30px;
+}
+.buttonsAdd{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5px;
+}
+.somar {
+	box-shadow: 0px 10px 14px -7px #276873;
+    background: rgb(47,19,53);
+    background: linear-gradient(90deg, rgba(47,19,53,1) 0%, rgba(98,14,93,1) 37%, rgba(157,0,122,1) 100%);
+	border-radius:8px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+    font-family: 'comfortaa';
+	font-size:20px;
+	font-weight:bold;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #3d768a;
+    height: 25px;
+    font-size: 20px;
+    font-family: 'comfortaa';
+    width: 30px;
+}
+.somar:hover {
+    background: linear-gradient(90deg, rgba(47,19,53,1) 0%, rgba(98,14,93,1) 37%, rgba(157,0,122,1) 100%);
+	border-radius:8px;
+}
+.somar:active {
+	position:relative;
+	top:1px;
+}
+.sub {
+	box-shadow: 0px 10px 14px -7px #276873;
+    background: rgb(47,19,53);
+    background: linear-gradient(90deg, rgba(47,19,53,1) 0%, rgba(98,14,93,1) 37%, rgba(157,0,122,1) 100%);
+	border-radius:8px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+    font-family: 'comfortaa';
+	font-size:20px;
+	font-weight:bold;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #3d768a;
+    height: 25px;
+    font-size: 20px;
+    font-family: 'comfortaa';
+    width: 30px;
+}
+.sub:hover {
+    background: linear-gradient(90deg, rgba(47,19,53,1) 0%, rgba(98,14,93,1) 37%, rgba(157,0,122,1) 100%);
+	border-radius:8px;
+}
+.sub:active {
+	position:relative;
+	top:1px;
+}
+.containerAdd{
+    display: flex;
 }
 `

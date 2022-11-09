@@ -7,12 +7,13 @@ import Calças from "./Calcas"
 import Sapatos from "./Sapatos"
 import OpeningCart from "../CartPage/Cart"
 import { AuthContext } from "../Contexts/Auth"
+import Finishing from "../finally/finishing"
 
 export default function InitialPage() {
     const[blusas, setBlusas] = useState([])
     const[calcas, setCalcas] = useState([])
     const[sapatos, setSapatos] = useState([])
-    const {openCart} = useContext(AuthContext)
+    const {openCart, fin} = useContext(AuthContext)
 
     useEffect(()=>{
         const promisse = axios.get(`${process.env.REACT_APP_PRODUCTS_URI}/Blusas`)
@@ -32,8 +33,9 @@ export default function InitialPage() {
 
     return (
         <>
-            <Header />
+        {fin ? <Finishing/> : ""}            
             {openCart?<OpeningCart/>:""}
+            <Header />
             <InitialPageContainer>
                 <h1>Blusas</h1>
                 <div className="ContainerBlusas">
@@ -59,7 +61,7 @@ export default function InitialPage() {
 const InitialPageContainer = styled.div`
 font-size: 30px;
 font-family: 'Comfortaa';
-margin-top: 120px;
+padding-top: 120px;
 h1{
     margin-bottom: 20px;
     margin-top: 20px;
