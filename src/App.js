@@ -3,6 +3,8 @@ import GlobalStyle from "./GlobalStyled/Globalstyle";
 import InitialPage from "./ shopping page/InitialPage";
 import Product from "./productPage/Product";
 import AuthProvider from "./Contexts/Auth";
+import ConfirmPage from "./ConfirmPurchasePage/LastPage";
+
 function App() {
   return (
     <>
@@ -12,6 +14,7 @@ function App() {
           <Routes>
             <Route path="/" element={<InitialPage />} />
             <Route path="/:category/:id" element={<Product />} />
+            <Route path="/ConfirmPage" element={<ConfirmPage />} />
           </Routes>
         </AuthProvider>
       </BrowserRouter>

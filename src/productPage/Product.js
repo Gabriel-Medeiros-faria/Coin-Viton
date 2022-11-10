@@ -6,7 +6,7 @@ import Header from "../Header/header"
 import { useContext } from "react"
 import { AuthContext } from "../Contexts/Auth"
 import OpeningCart from "../CartPage/Cart"
-import Finishing from "../finally/finishing"
+import Finishing from "../Finally/Finishing"
 
 
 export default function Product() {

@@ -1,20 +1,38 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import { AuthContext } from "../Contexts/Auth"
 
 export default function Finishing() {
-    const{setFin,setName, setEmail, setDataNascimento,setCep} = useContext(AuthContext)
+    const{setFin, setName, setEmail, setDataNascimento, setCep, name, fin, email, cep, dataNascimento} = useContext(AuthContext)
+    const navigate = useNavigate()
+    const[fillAll, setFillAll] = useState(false)
+
+    function ConfirmPurchase(){
+
+        if(fin && name && email && cep && dataNascimento){
+            //navigate("/ConfirmPage")
+            setFillAll(false)
+        }
+        else{
+            setFillAll(true)
+        }
+    }
+
     return (
         <>
             <ContainerFinishing>
                 <div className="infoUser">
-                    <p>Coin Viton</p>
-                    <input placeholder="nome completo" onChange={(e)=>setName(e.target.value)}></input>
-                    <input placeholder="e-mail" onChange={(e)=>setEmail(e.target.value)}></input>
-                    <input placeholder="data de nascimento" onChange={(e)=>setDataNascimento(e.target.value)}></input>
-                    <input placeholder="CEP" onChange={(e)=>setCep(e.target.value)}></input>
+                    <p className="ShoppingName">Coin Viton</p>
+                    <form onSubmit={ConfirmPurchase}>
+                    <input placeholder="nome completo" required onChange={(e)=>setName(e.target.value)}></input>
+                    <input placeholder="e-mail" type={"email"} required onChange={(e)=>setEmail(e.target.value)}></input>
+                    <input placeholder="data de nascimento" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" required onChange={(e)=>setDataNascimento(e.target.value)}></input>
+                    <input placeholder="CEP" required pattern= "\d{5}-?\d{3}" onChange={(e)=>setCep(e.target.value)}></input>
+                    {fillAll?<p className="Fill">Preencha todos os campos corretamente</p>:""}
                     <button className="continue">Continuar</button>
                     <div className="back" onClick={()=> setFin(false)}>Voltar</div>
+                    </form>
                 </div>
             </ContainerFinishing>
         </>
@@ -29,7 +47,7 @@ justify-content: center;
 align-items: center;
 position: fixed;
 z-index: 999;
-p{
+.ShoppingName{
     font-family: 'Comfortaa';
     font-size: 50px;
     color: #620e5d;
@@ -44,7 +62,17 @@ p{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+    form{
+        display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    }
+    .Fill{
+        font-family: 'Comfortaa';
+        font-size: 15px;
+        color: #620e5d;
+    }
     input {
         padding: 7px;
      font-size: 20px;

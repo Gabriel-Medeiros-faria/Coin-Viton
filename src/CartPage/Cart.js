@@ -1,12 +1,13 @@
 import { useContext, useEffect } from "react"
 import styled from "styled-components"
 import { AuthContext } from "../Contexts/Auth"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import axios from "axios"
 
 export default function OpeningCart() {
-    const { arrCart, setOpenCart, setArrCart, setFin, qtd} = useContext(AuthContext)
+    const { arrCart, setOpenCart, setArrCart, setFin, qtd, fin, email, cep, dataNascimento, name} = useContext(AuthContext)
     const { id } = useParams()
+    const navigate = useNavigate()
     console.log(arrCart)
 
     function GetItem(){
@@ -29,11 +30,14 @@ export default function OpeningCart() {
     }
 
     function FinalizarPedido() {
+        if(fin && name && email && cep && dataNascimento){
+            navigate("/ConfirmPage")
+        }
         setFin(true)
         setOpenCart(false)
     }
 
-    function AddQtd(quantidade) {
+    function AddQtd() {
         const body = {
             "qtd": qtd
         }
@@ -74,7 +78,7 @@ export default function OpeningCart() {
                 </ul> : <p className="none">Nenhum produto no carrinho</p>}
 
                 <div className="buttons">
-                    {arrCart.length !== 0 ? <button className="comprarMais" onClick={(() => FinalizarPedido())}>Finalizar pedido</button> : ""}
+                    {arrCart.length !== 0 ? <button className="Finalizar" onClick={(() => FinalizarPedido())}>Finalizar pedido</button> : ""}
                     <p className="back" onClick={(() => setOpenCart(false))}>Continuar comprando</p>
                 </div>
             </ContainerCart>
@@ -111,7 +115,7 @@ overflow-y: scroll;
     p{
         font-size: 20px;
         font-family: 'Comfortaa';
-        margin-bottom: 20px;
+        margin-bottom: 15px;
         margin-top: 20px;
     }
     ion-icon{
@@ -133,7 +137,7 @@ overflow-y: scroll;
     font-size: 20px;
     text-decoration: underline;
     }
-    .comprarMais {
+    .Finalizar {
 	box-shadow: 0px 10px 14px -7px #276873;
     background: rgb(47,19,53);
     background: linear-gradient(90deg, rgba(47,19,53,1) 0%, rgba(98,14,93,1) 37%, rgba(157,0,122,1) 100%);
@@ -149,11 +153,11 @@ overflow-y: scroll;
 	text-shadow:0px 1px 0px #3d768a;
     margin-top: 30px;
 }
-.comprarMais:hover {
+.Finalizar:hover {
     background: linear-gradient(90deg, rgba(47,19,53,1) 0%, rgba(98,14,93,1) 37%, rgba(157,0,122,1) 100%);
 	border-radius:8px;
 }
-.comprarMais:active {
+.Finalizar:active {
 	position:relative;
 	top:1px;
 }
