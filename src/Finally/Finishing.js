@@ -9,7 +9,6 @@ export default function Finishing() {
 
     function confirmPurchase(event){
             event.preventDefault()
-            console.log("fasdfasdfasdf")
             navigate("/ConfirmPage")
             setHeaderDisabled(true)
     }
@@ -69,16 +68,16 @@ z-index: 999;
     }
     input {
         padding: 7px;
-     font-size: 20px;
-     border-width: 2px;
-     border-color: #620e5d80;
-     background-color: #ffffff;
-     color: #620e5d;
-     border-style: solid;
-     border-radius: 50px;
-     box-shadow: 0px 0px 0px rgba(66,66,66,.75);
-     text-shadow: 0px 0px 0px rgba(66,66,66,.75);
-     margin-bottom: 10px;
+    font-size: 20px;
+    border-width: 2px;
+    border-color: #620e5d80;
+    background-color: #ffffff;
+    color: #620e5d;
+    border-style: solid;
+    border-radius: 50px;
+    box-shadow: 0px 0px 0px rgba(66,66,66,.75);
+    text-shadow: 0px 0px 0px rgba(66,66,66,.75);
+    margin-bottom: 10px;
 }
 input:focus {
     outline:none;
@@ -117,5 +116,8 @@ input::placeholder{
     margin-top: 10px;
     margin-bottom: 20px;
     font-size: 20px;
+}
+.back:hover{
+    cursor: pointer;
 }
 `

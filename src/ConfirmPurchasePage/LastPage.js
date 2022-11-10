@@ -52,7 +52,7 @@ export default function ConfirmPage(){
                         </div>
                     </div>
                     <div className="buttons">
-                        <button className="Finalizar">Confirmar Pedido</button>
+                        <button className="Finalizar" onClick={()=> navigate("/ThanksPage")}>Confirmar Pedido</button>
                         <div className="back" onClick={()=> Back()}>Comprar mais</div>
                     </div>
                 </ConfirmPageContainer>
@@ -121,13 +121,16 @@ p{
     margin-top: 10px;
     margin-bottom: 20px;
     font-size: 20px;
-    }
-    .buttons{
+}
+.back:hover{
+    cursor: pointer;
+}
+.buttons{
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-    }
+}
 .infoUser{
     display: flex;
     justify-content: center;

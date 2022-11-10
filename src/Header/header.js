@@ -39,15 +39,6 @@ z-index: 0;
 top: 0;
 left: 0;
 `
-const ImgUser = styled.div`
-font-size: 40px;
-color: white;
-img{
-    width: 60px;
-    border-radius: 100%;
-    margin-left: 20px;
-}
-`
 const NameShopping = styled.div`
 font-size: 50px;
 color: white;
@@ -55,6 +46,9 @@ font-family: 'Comfortaa';
 font-size: 40px;
 color: white;
 position: relative;
+h1:hover{
+    cursor: pointer;
+}
 span{
     margin-right: 20px;
 }
@@ -75,6 +69,9 @@ div{
     display: flex;
     margin-right: 2px;
     margin-top: 4px;
+}
+ion-icon:hover{
+    cursor: pointer;
 }
 display: flex;
 font-size: 30px;

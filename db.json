@@ -64,7 +64,7 @@
       "item": "Blusa vermelha",
       "img": "https://img.ltwebstatic.com/images3_pi/2022/11/01/1667267004a4f503909f78cf013ee4b0bed0770237_thumbnail_600x.webp",
       "details": "detalhe item 2",
-      "qtd": 2,
+      "qtd": 1,
       "price": 40
     },
     {
@@ -96,7 +96,7 @@
       "item": "Blusa branca",
       "img": "https://img.ltwebstatic.com/images3_pi/2022/04/14/1649930034995a8c524926c469e521cfbecf4a9aa9_thumbnail_600x.webp",
       "details": "detalhe item 6",
-      "qtd": 4,
+      "qtd": 1,
       "price": 19
     },
     {
@@ -311,5 +311,27 @@
       "price": 100
     }
   ],
-  "Cart": []
+  "Cart": [
+    {
+      "id": "4",
+      "item": "Blusa bege",
+      "img": "https://img.ltwebstatic.com/images3_pi/2022/04/29/16511993454bb801ff3255511c6b9d46f867b9f005_thumbnail_600x.webp",
+      "price": 23,
+      "qtd": 1
+    },
+    {
+      "id": "10",
+      "item": "Calça marrom",
+      "img": "https://img.ltwebstatic.com/images3_pi/2021/07/14/1626232522d139f55fabfdb7b7296d9b278792a873_thumbnail_600x.webp",
+      "price": 17,
+      "qtd": 1
+    },
+    {
+      "id": "2",
+      "item": "Blusa vermelha",
+      "img": "https://img.ltwebstatic.com/images3_pi/2022/11/01/1667267004a4f503909f78cf013ee4b0bed0770237_thumbnail_600x.webp",
+      "price": 40,
+      "qtd": 1
+    }
+  ]
 }

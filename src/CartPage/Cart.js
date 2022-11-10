@@ -8,7 +8,6 @@ export default function OpeningCart() {
     const { arrCart, setOpenCart, setArrCart, setFin, qtd, fin, email, cep, dataNascimento, name} = useContext(AuthContext)
     const { id } = useParams()
     const navigate = useNavigate()
-    console.log(arrCart)
 
     function GetItem(){
         useEffect(()=>{
@@ -100,8 +99,15 @@ border-radius: 100px 0px;
 box-shadow: 2px 2px 10px -1px rgba(0, 0, 0, 0.5);
 z-index: 10000000;
 overflow-y: scroll;
+
+@media (max-width:600px){
+    width: 90%;
+}
 ul{
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .procutc{
     margin-top: 50px;
@@ -139,6 +145,9 @@ ul{
     margin-bottom: 20px;
     font-size: 20px;
     text-decoration: underline;
+    }
+    .back:hover{
+        cursor: pointer;
     }
     .Finalizar {
 	box-shadow: 0px 10px 14px -7px #276873;

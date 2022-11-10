@@ -17,7 +17,6 @@ export default function Product() {
     useEffect(() => {
         const promisse = axios.get(`${process.env.REACT_APP_PRODUCTS_URI}/${category}/${id}`)
         promisse.then((resp) => {
-            console.log(resp.data)
             setTotalObject(resp.data)
             setDetails(resp.data.details)
             setPrice(resp.data.price)
@@ -57,7 +56,6 @@ export default function Product() {
                 "price": price,
                 "qtd": qtd
             }
-            console.log(Postbody)
             const promisse = axios.post(`${process.env.REACT_APP_PRODUCTS_URI}/Cart`, Postbody)
             promisse.then((resp) => console.log(resp))
             promisse.catch((error) => console.log(error))
@@ -107,6 +105,11 @@ const ContainerProdutct = styled.div`
 display: flex;
 justify-content: center;
 padding-top: 130px;
+
+@media (max-width:600px){
+    width: 50%;
+    margin-left: 120px;
+}
 img{
     width: 400px;
 }
@@ -217,5 +220,8 @@ p{
     margin-top: 10px;
     margin-bottom: 20px;
     font-size: 20px;
+}
+.back:hover{
+    cursor: pointer;
 }
 `
