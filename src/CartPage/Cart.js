@@ -100,9 +100,12 @@ border-radius: 100px 0px;
 box-shadow: 2px 2px 10px -1px rgba(0, 0, 0, 0.5);
 z-index: 10000000;
 overflow-y: scroll;
+ul{
+    width: 100%;
+}
 .procutc{
     margin-top: 50px;
-    width: 500px;
+    width: 95%;
     background-color: white;
     display: flex;
     box-shadow: 2px 2px 10px -1px rgba(0, 0, 0, 0.5);

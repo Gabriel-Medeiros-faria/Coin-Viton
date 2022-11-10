@@ -5,18 +5,16 @@ import { AuthContext } from "../Contexts/Auth"
 
 export default function Header(){
     const navigate = useNavigate()
-    const{arrCart, setOpenCart, setDisabled} = useContext(AuthContext)
+    const{arrCart, setOpenCart, setDisabled, headerDisabled} = useContext(AuthContext)
     return(
         <>
             <HeaderContainer>
-                <ImgUser>
-                    <img src="https://media-exp1.licdn.com/dms/image/C4E0BAQGtjaN-5cI7Nw/company-logo_200_200/0/1656973103389?e=2147483647&v=beta&t=eClbU0wyH-I-l6TJuSLxc96NYGknlnyjv3XOJ7SPuqw"/>
-                </ImgUser>
                 <NameShopping>
-                    <h1 onClick={()=>{
+                    {!headerDisabled? <h1 onClick={()=>{
                         navigate("/")
                         setDisabled(false)}}>
-                    Coin Viton</h1>
+                    <span>C</span><span><img src="https://media-exp1.licdn.com/dms/image/C4E0BAQGtjaN-5cI7Nw/company-logo_200_200/0/1656973103389?e=2147483647&v=beta&t=eClbU0wyH-I-l6TJuSLxc96NYGknlnyjv3XOJ7SPuqw"/></span>in Viton</h1>:<h1>
+                    <span>C</span><span><img src="https://media-exp1.licdn.com/dms/image/C4E0BAQGtjaN-5cI7Nw/company-logo_200_200/0/1656973103389?e=2147483647&v=beta&t=eClbU0wyH-I-l6TJuSLxc96NYGknlnyjv3XOJ7SPuqw"/></span>in Viton</h1>}
                 </NameShopping>
                 <Cart>
                     {arrCart.length !== 0 ?<div><p>Conclua sua compra</p><ion-icon name="arrow-forward-outline"></ion-icon></div>:""}
@@ -54,6 +52,19 @@ const NameShopping = styled.div`
 font-size: 50px;
 color: white;
 font-family: 'Comfortaa';
+font-size: 40px;
+color: white;
+position: relative;
+span{
+    margin-right: 20px;
+}
+img{
+    width: 40px;
+    border-radius: 100%;
+    margin-left: 20px;
+    position: absolute;
+    left: 10px;
+}
 `
 const Cart = styled.div`
 p{

@@ -4,19 +4,14 @@ import styled from "styled-components"
 import { AuthContext } from "../Contexts/Auth"
 
 export default function Finishing() {
-    const{setFin, setName, setEmail, setDataNascimento, setCep, name, fin, email, cep, dataNascimento} = useContext(AuthContext)
+    const{setFin, setName, setEmail, setDataNascimento, setCep, setHeaderDisabled} = useContext(AuthContext)
     const navigate = useNavigate()
-    const[fillAll, setFillAll] = useState(false)
 
-    function ConfirmPurchase(){
-
-        if(fin && name && email && cep && dataNascimento){
-            //navigate("/ConfirmPage")
-            setFillAll(false)
-        }
-        else{
-            setFillAll(true)
-        }
+    function confirmPurchase(event){
+            event.preventDefault()
+            console.log("fasdfasdfasdf")
+            navigate("/ConfirmPage")
+            setHeaderDisabled(true)
     }
 
     return (
@@ -24,15 +19,14 @@ export default function Finishing() {
             <ContainerFinishing>
                 <div className="infoUser">
                     <p className="ShoppingName">Coin Viton</p>
-                    <form onSubmit={ConfirmPurchase}>
+                    <form onSubmit={confirmPurchase}>
                     <input placeholder="nome completo" required onChange={(e)=>setName(e.target.value)}></input>
                     <input placeholder="e-mail" type={"email"} required onChange={(e)=>setEmail(e.target.value)}></input>
                     <input placeholder="data de nascimento" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" required onChange={(e)=>setDataNascimento(e.target.value)}></input>
                     <input placeholder="CEP" required pattern= "\d{5}-?\d{3}" onChange={(e)=>setCep(e.target.value)}></input>
-                    {fillAll?<p className="Fill">Preencha todos os campos corretamente</p>:""}
                     <button className="continue">Continuar</button>
-                    <div className="back" onClick={()=> setFin(false)}>Voltar</div>
                     </form>
+                    <div className="back" onClick={()=> setFin(false)}>Voltar</div>
                 </div>
             </ContainerFinishing>
         </>

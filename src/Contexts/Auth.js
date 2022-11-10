@@ -17,7 +17,7 @@ function AuthProvider({children}){
     const[dataNascimento, setDataNascimento] = useState("")
     const[cep, setCep] = useState("")
     const[item, setItem] = useState("")
-
+    const[headerDisabled, setHeaderDisabled] = useState(false)
     return(
         <AuthContext.Provider value={{
         setDetails, 
@@ -46,7 +46,9 @@ function AuthProvider({children}){
         name,
         email,
         dataNascimento,
-        cep
+        cep,
+        headerDisabled,
+        setHeaderDisabled
         }}>
             {children}
         </AuthContext.Provider>

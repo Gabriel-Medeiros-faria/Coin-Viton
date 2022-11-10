@@ -6,16 +6,24 @@ import { useNavigate } from "react-router-dom"
 import axios from "axios"
 
 export default function ConfirmPage(){
-    const {arrCart, name, email, cep, dataNascimento} = useContext(AuthContext)
+    const {arrCart, name, email, cep, dataNascimento, serHeaderDisabled, setFin} = useContext(AuthContext)
     const navigate = useNavigate()
     const [newCep, setNewCep] = useState("")
     let newPrice = 0
     let newArrCart = arrCart.map((obj)=> newPrice += obj.price * obj.qtd)
 
     useEffect(()=>{
-        let promisse = axios.get(`viacep.com.br/ws/${cep}/json/`)
-        promisse.then((resp)=> console.log(resp.data))
+        let promisse = axios.get(`https://viacep.com.br/ws/${Number(cep)}/json/`)
+        promisse.then((resp)=> setNewCep(resp.data))
+        promisse.catch((error)=> console.log(error))
     },[])
+    
+    function Back(){
+        setFin(false)
+        navigate("/")
+        serHeaderDisabled(false)
+    }
+
     return(
         <>
             <Header/>
@@ -37,15 +45,15 @@ export default function ConfirmPage(){
                         <p>{name}</p>
                         <p>{dataNascimento}</p>
                         <p>{email}</p>
-                        <p>{cep}</p>
+                        <p>{cep}, {newCep.localidade}, {newCep.uf}</p>
                         </div>
                         <div className="total">
-                            <p>R$ {newPrice}</p>
+                            <p>Total: R$ {newPrice}</p>
                         </div>
                     </div>
                     <div className="buttons">
                         <button className="Finalizar">Confirmar Pedido</button>
-                        <div className="back" onClick={()=> navigate("/")}>Comprar mais</div>
+                        <div className="back" onClick={()=> Back()}>Comprar mais</div>
                     </div>
                 </ConfirmPageContainer>
         </>
@@ -72,6 +80,7 @@ p{
     margin-bottom: 20px;
     box-shadow: 2px 2px 10px -1px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
+    width: 100%;
     img{
         width: 150px;
         border-radius: 10px;
@@ -124,7 +133,7 @@ p{
     justify-content: center;
     align-items: center;
     box-shadow: 2px 2px 10px -1px rgba(0, 0, 0, 0.5);
-    width: 50%;
+    width: 400px;
     border-radius: 10px;
     .total{
         margin-left: 50px;

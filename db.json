@@ -299,7 +299,7 @@
       "item": "Sapatos brancos",
       "img": "https://img.ltwebstatic.com/images3_pi/2022/05/26/16535510950a24651454497109b9e5d7e0b43bb1e8_thumbnail_600x.webp",
       "details": "detalhe item 5",
-      "qtd": 27,
+      "qtd": 1,
       "price": 99
     },
     {
@@ -311,20 +311,5 @@
       "price": 100
     }
   ],
-  "Cart": [
-    {
-      "id": "4",
-      "item": "Blusa bege",
-      "img": "https://img.ltwebstatic.com/images3_pi/2022/04/29/16511993454bb801ff3255511c6b9d46f867b9f005_thumbnail_600x.webp",
-      "price": 23,
-      "qtd": 1
-    },
-    {
-      "id": "13",
-      "item": "Calça xadrez",
-      "img": "https://img.ltwebstatic.com/images3_pi/2021/09/18/1631949938947e1b9dccec47735832fa09bf8c6049_thumbnail_600x.webp",
-      "price": 27,
-      "qtd": 1
-    }
-  ]
+  "Cart": []
 }
