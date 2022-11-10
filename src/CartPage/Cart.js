@@ -133,6 +133,9 @@ ul{
         top: 10px;
         font-size: 20px;
     }
+    ion-icon:hover{
+        cursor: pointer;
+    }
 }
 .buttons{
     display: flex;

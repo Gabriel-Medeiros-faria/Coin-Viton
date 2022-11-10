@@ -307,30 +307,16 @@
       "item": "Sapatos verdes",
       "img": "https://img.ltwebstatic.com/images3_pi/2022/05/13/1652433943ae43f12c475f7314331887cdf690304a_thumbnail_600x.webp",
       "details": "detalhe item 6",
-      "qtd": 29,
+      "qtd": 1,
       "price": 100
     }
   ],
   "Cart": [
     {
-      "id": "4",
-      "item": "Blusa bege",
-      "img": "https://img.ltwebstatic.com/images3_pi/2022/04/29/16511993454bb801ff3255511c6b9d46f867b9f005_thumbnail_600x.webp",
-      "price": 23,
-      "qtd": 1
-    },
-    {
-      "id": "10",
-      "item": "Calça marrom",
-      "img": "https://img.ltwebstatic.com/images3_pi/2021/07/14/1626232522d139f55fabfdb7b7296d9b278792a873_thumbnail_600x.webp",
-      "price": 17,
-      "qtd": 1
-    },
-    {
-      "id": "2",
-      "item": "Blusa vermelha",
-      "img": "https://img.ltwebstatic.com/images3_pi/2022/11/01/1667267004a4f503909f78cf013ee4b0bed0770237_thumbnail_600x.webp",
-      "price": 40,
+      "id": "5",
+      "item": "Blusa vinho",
+      "img": "https://img.ltwebstatic.com/images3_pi/2022/04/29/165119934949b317d664e8c5b56533fe44deb0d16d_thumbnail_600x.webp",
+      "price": 50,
       "qtd": 1
     }
   ]
