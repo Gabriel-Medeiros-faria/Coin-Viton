@@ -51,6 +51,7 @@ export default function InitialPage() {
             let newArrSapatos = sapatos.filter(({item})=>item.toLowerCase().includes(value.toLowerCase()))
             setSapatos(newArrSapatos)
     }
+
     return (
         <>
         {fin ? <Finishing/> : ""}            

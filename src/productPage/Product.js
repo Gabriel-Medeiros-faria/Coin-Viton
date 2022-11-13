@@ -82,9 +82,10 @@ export default function Product() {
                     </div>
                     <div className="finaly">
                         <div className="buttons">
-                            <button className="somar" onClick={() => AddQtd()}>+</button>
+                        <button className="sub" onClick={() => SubQtd()}>-</button>
                             <p>{qtd}</p>
-                            <button className="sub" onClick={() => SubQtd()}>-</button>
+                        <button className="somar" onClick={() => AddQtd()}>+</button>
+                            
                         </div>
                         <button className="addCart" onClick={() => AddCart()}>Colocar no carrinho</button>
                         {arrCart.includes(totalObject) ? <p className="sucess">produto adicionado no carrinho</p> : ""}
@@ -105,7 +106,8 @@ const ContainerProdutct = styled.div`
 display: flex;
 justify-content: center;
 padding-top: 130px;
-
+margin: auto;
+width: 42%;
 @media (max-width:600px){
     width: 50%;
     margin-left: 120px;
@@ -118,6 +120,7 @@ img{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 p{
     font-family: 'comfortaa';

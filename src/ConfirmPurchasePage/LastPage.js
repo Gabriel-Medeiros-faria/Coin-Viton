@@ -9,6 +9,7 @@ export default function ConfirmPage(){
     const {arrCart, name, email, cep, dataNascimento, serHeaderDisabled, setFin} = useContext(AuthContext)
     const navigate = useNavigate()
     const [newCep, setNewCep] = useState("")
+    
     let newPrice = 0
     let newArrCart = arrCart.map((obj)=> newPrice += obj.price * obj.qtd)
 

@@ -18,14 +18,13 @@ const ContainerBlusas = styled.div`
 font-size: 18px;
 font-family: 'Comfortaa';
 margin-left: 20px;
+:hover{
+    cursor: pointer;
+}
 img{
     width: 200px;
 }
 p{
     margin-bottom: 5px;
 }
-img:hover{
-    cursor: pointer;
-}
-
 `
